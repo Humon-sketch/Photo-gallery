@@ -1,24 +1,34 @@
-function loadGallery(folder, totalImages, containerId) {
+// STEP 1: List all your actual filenames
+const fundayImages = [
+  "DSC_4928.JPG",
+  "DSC_4929.JPG",
+  "DSC_4930.JPG"
+  // ... add all 300 FUNDAY images here
+];
+
+const prayerdayImages = [
+  "IMG_1023.jpg",
+  "IMG_1024.jpg"
+  // ... add all 300 PRAYERDAY images here
+];
+
+// STEP 2: Function to load images
+function loadGallery(folder, images, containerId) {
   const container = document.getElementById(containerId);
 
-  for (let i = 1; i <= totalImages; i++) {
-    const img = document.createElement("img");
-    img.src = `${folder}/${i}.jpg`;
-    img.loading = "lazy";
+  images.forEach(imgName => {
+    const photoDiv = document.createElement("div");
+    photoDiv.className = "photo";
 
-    img.onclick = () => {
-      const link = document.createElement("a");
-      link.href = img.src;
-      link.download = "";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    };
+    photoDiv.innerHTML = `
+      <img src="${folder}/${imgName}" alt="">
+      <a href="${folder}/${imgName}" download="${imgName}" class="download-btn">Download</a>
+    `;
 
-    container.appendChild(img);
-  }
+    container.appendChild(photoDiv);
+  });
 }
 
-// START SMALL — WE WILL INCREASE LATER
-loadGallery("FUNDAY", 300, "event1");
-loadGallery("PRAYERDAY", 500, "event2");
+// STEP 3: Load both galleries
+loadGallery("FUNDAY", fundayImages, "funday");
+loadGallery("PRAYERDAY", prayerdayImages, "prayerday");
