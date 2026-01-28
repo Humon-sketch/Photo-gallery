@@ -1,18 +1,18 @@
 // -------------------- CONFIG --------------------
 
-// FUNDAY: images 1 to 300
+// FUNDAY: images 1 to 276
 const fundayFolder = "FUNDAY";
 const fundayImages = [];
-for(let i=1; i<=300; i++){
+for(let i=1; i<=276; i++){
     let num = i.toString().padStart(4,'0'); // 0001, 0002...
     fundayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
 
-// PRAYERDAY: images 301 to 800
+// PRAYERDAY: images 277 to 768
 const prayerdayFolder = "PRAYERDAY";
 const prayerdayImages = [];
-for(let i=301; i<=800; i++){
-    let num = i.toString().padStart(4,'0'); // 0301, 0302...
+for(let i=277; i<=768; i++){
+    let num = i.toString().padStart(4,'0'); // 0277, 0278...
     prayerdayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
 
