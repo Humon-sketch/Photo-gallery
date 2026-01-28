@@ -3,7 +3,7 @@
 // FUNDAY folder & automatic image generator
 const fundayFolder = "FUNDAY";
 const fundayImages = [];
-for(let i=1; i<=276; i++){  // 300 images in FUNDAY
+for(let i=1; i<=276; i++){  // 276 images in FUNDAY
     let num = i.toString().padStart(4,'0'); // 0001, 0002, ...
     fundayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
@@ -11,7 +11,7 @@ for(let i=1; i<=276; i++){  // 300 images in FUNDAY
 // PRAYERDAY folder & automatic image generator
 const prayerdayFolder = "PRAYERDAY";
 const prayerdayImages = [];
-for(let i=277; i<=770; i++){  // 500 images in PRAYERDAY
+for(let i=277; i<=770; i++){  // 494 images in PRAYERDAY
     let num = i.toString().padStart(4,'0'); // 0301, 0302, ...
     prayerdayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
