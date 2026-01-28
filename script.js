@@ -20,5 +20,5 @@ function loadGallery(folder, totalImages, containerId) {
 }
 
 // START SMALL — WE WILL INCREASE LATER
-loadGallery("FUNDAY", 10, "event1");
-loadGallery("PRAYERDAY", 10, "event2");
+loadGallery("FUNDAY", 300, "event1");
+loadGallery("PRAYERDAY", 300, "event2");
