@@ -1,22 +1,20 @@
-// -------------------- CONFIG --------------------
-
-// FUNDAY: images 1 to 276
+// FUNDAY: 276 images
 const fundayFolder = "FUNDAY";
 const fundayImages = [];
-for(let i=1; i<=276; i++){
-    let num = i.toString().padStart(4,'0'); // 0001, 0002...
+for(let i=1;i<=276;i++){
+    let num = i.toString().padStart(4,'0');
     fundayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
 
-// PRAYERDAY: images 277 to 768
+// PRAYERDAY: 492 images
 const prayerdayFolder = "PRAYERDAY";
 const prayerdayImages = [];
-for(let i=277; i<=768; i++){
-    let num = i.toString().padStart(4,'0'); // 0277, 0278...
+for(let i=277;i<=768;i++){
+    let num = i.toString().padStart(4,'0');
     prayerdayImages.push(`IMG-20251204-WA${num}.jpg`);
 }
 
-// -------------------- FUNCTION TO LOAD IMAGES --------------------
+// Load images into gallery
 function loadGallery(folder, images, containerId){
     const container = document.getElementById(containerId);
     images.forEach(imgName=>{
@@ -30,6 +28,5 @@ function loadGallery(folder, images, containerId){
     });
 }
 
-// -------------------- LOAD BOTH GALLERIES --------------------
 loadGallery(fundayFolder, fundayImages, "funday");
 loadGallery(prayerdayFolder, prayerdayImages, "prayerday");
