@@ -46,7 +46,7 @@ header {
 /* PHOTO BOX */
 .photo img {
   width: 100%;
-  height: 120px; /* fixed height for grid layout */
+  height: 160px; /* fixed height for grid layout */
   object-fit: cover;
   border-radius: 8px;
   display: block;
@@ -56,13 +56,13 @@ header {
 .download-btn {
   display: block;
   text-align: center;
-  margin-top: 6px;
+  margin-top: 4px;
   padding: 6px;
   background: #0a66c2;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 3px;
+  font-size: 8px;
 }
 
 .download-btn:hover {
