@@ -14,12 +14,13 @@ body {
   border-radius: 8px;
 }
 
-/* HEADER / INSTAGRAM BUTTON */
+/* HEADER */
 header {
   text-align: center;
   padding: 20px;
 }
 
+/* INSTAGRAM BUTTON */
 .instagram-btn {
   display: inline-block;
   margin-top: 10px;
@@ -36,18 +37,19 @@ header {
 
 /* GALLERY GRID */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns fixed */
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important; /* 3 columns */
   gap: 15px;
   padding: 10px;
 }
 
-/* PHOTO STYLING */
+/* PHOTO BOX */
 .photo img {
   width: 100%;
-  height: 200px; /* fixed height for uniform grid */
-  object-fit: cover; /* makes images fill the box neatly */
+  height: 120px; /* fixed height for grid layout */
+  object-fit: cover;
   border-radius: 8px;
+  display: block;
 }
 
 /* DOWNLOAD BUTTON */
