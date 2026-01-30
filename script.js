@@ -1,5 +1,5 @@
-// FUNDAY: 276 images
-const fundayFolder = "FUNDAY";
+/* ================= IMAGE LISTS ================= */
+
 const fundayImages = [
   "IMG-20251208-WA0142.jpg",
   "IMG-20251221-WA0032.jpg",
@@ -275,8 +275,6 @@ const fundayImages = [
   "IMG-20251221-WA0418.jpg",
 ];
 
-// PRAYERDAY: 492 images
-const prayerdayFolder = "PRAYERDAY";
 const prayerdayImages = [
   "IMG-20251204-WA0003.jpg",
   "IMG-20251204-WA0004.jpg",
@@ -772,28 +770,74 @@ const prayerdayImages = [
   "IMG-20251210-WA0078.jpg",
 ];
 
-// Load images into gallery
-function loadGallery(folder, images, containerId){
-    const container = document.getElementById(containerId);
-    images.forEach(imgName=>{
-        const photoDiv = document.createElement("div");
-        photoDiv.className = "photo";
-        photoDiv.innerHTML = `
-            <img src="${folder}/${imgName}" alt="${imgName}" onclick="openLightbox(this.src)">
-            <a href="${folder}/${imgName}" download="${imgName}" class="download-btn">Download</a>
-        `;
-        container.appendChild(photoDiv);
+/* ============================================== */
+
+let currentImages = [];
+let currentIndex = 0;
+
+/* Load gallery */
+function loadGallery(folder, images, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  images.forEach((file, index) => {
+    const img = document.createElement("img");
+    img.src = `${folder}/${file}`;
+    img.loading = "lazy";
+
+    img.addEventListener("click", () => {
+      openLightbox(folder, images, index);
     });
+
+    container.appendChild(img);
+  });
 }
 
-loadGallery(fundayFolder, fundayImages, "funday");
-loadGallery(prayerdayFolder, prayerdayImages, "prayerday");
+/* Open fullscreen */
+function openLightbox(folder, images, index) {
+  currentImages = images.map(f => `${folder}/${f}`);
+  currentIndex = index;
 
-function openLightbox(src) {
-  document.getElementById("lightbox-img").src = src;
-  document.getElementById("lightbox").style.display = "flex";
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+
+  img.src = currentImages[currentIndex];
+  lightbox.style.display = "flex";
 }
 
+/* Close fullscreen */
 function closeLightbox() {
   document.getElementById("lightbox").style.display = "none";
 }
+
+/* Next / Previous */
+function nextImage() {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  document.getElementById("lightbox-img").src = currentImages[currentIndex];
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  document.getElementById("lightbox-img").src = currentImages[currentIndex];
+}
+
+/* Touch swipe */
+let startX = 0;
+const lightbox = document.getElementById("lightbox");
+
+lightbox.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextImage();
+  if (endX - startX > 50) prevImage();
+});
+
+/* Click to close */
+lightbox.addEventListener("click", closeLightbox);
+
+/* INIT */
+loadGallery("funday", fundayImages, "funday");
+loadGallery("prayerday", prayerdayImages, "prayerday");
