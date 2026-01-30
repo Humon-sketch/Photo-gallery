@@ -779,7 +779,7 @@ function loadGallery(folder, images, containerId){
         const photoDiv = document.createElement("div");
         photoDiv.className = "photo";
         photoDiv.innerHTML = `
-            <img src="${folder}/${imgName}" alt="${imgName}">
+            <img src="${folder}/${imgName}" alt="${imgName}" onclick="openLightbox(this.src)">
             <a href="${folder}/${imgName}" download="${imgName}" class="download-btn">Download</a>
         `;
         container.appendChild(photoDiv);
@@ -788,3 +788,12 @@ function loadGallery(folder, images, containerId){
 
 loadGallery(fundayFolder, fundayImages, "funday");
 loadGallery(prayerdayFolder, prayerdayImages, "prayerday");
+
+function openLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
