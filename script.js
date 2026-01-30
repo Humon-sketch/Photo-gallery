@@ -1,5 +1,4 @@
-/* ===== IMAGE LISTS (EDIT ONLY THESE) ===== */
-
+// 🔥 PASTE YOUR ARRAYS HERE (DO NOT DELETE THESE NAMES)
 const fundayImages = [
   "IMG-20251208-WA0142.jpg",
   "IMG-20251221-WA0032.jpg",
@@ -274,7 +273,6 @@ const fundayImages = [
   "IMG-20251221-WA0417.jpg",
   "IMG-20251221-WA0418.jpg",
 ];
-
 const prayerdayImages = [
   "IMG-20251204-WA0003.jpg",
   "IMG-20251204-WA0004.jpg",
@@ -770,63 +768,34 @@ const prayerdayImages = [
   "IMG-20251210-WA0078.jpg",
 ];
 
-/* ======================================= */
+// ====== DO NOT TOUCH BELOW ======
 
-let currentImages = [];
-let currentIndex = 0;
-
-/* Load gallery */
 function loadGallery(folder, images, containerId) {
   const container = document.getElementById(containerId);
-  container.innerHTML = "";
 
-  images.forEach((file, index) => {
+  images.forEach(name => {
     const img = document.createElement("img");
-    img.src = `${folder}/${file}`;
+    img.src = `${folder}/${name}`;
     img.loading = "lazy";
-    img.onclick = () => openLightbox(folder, images, index);
+
+    img.onclick = () => openViewer(img.src);
+
     container.appendChild(img);
   });
 }
 
-/* Fullscreen */
-function openLightbox(folder, images, index) {
-  currentImages = images.map(f => `${folder}/${f}`);
-  currentIndex = index;
-  document.getElementById("lightbox-img").src = currentImages[currentIndex];
-  document.getElementById("lightbox").style.display = "block";
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("viewer-img");
+
+function openViewer(src) {
+  viewerImg.src = src;
+  viewer.style.display = "flex";
 }
 
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
+viewer.onclick = () => {
+  viewer.style.display = "none";
+  viewerImg.src = "";
+};
 
-function nextImage() {
-  currentIndex = (currentIndex + 1) % currentImages.length;
-  document.getElementById("lightbox-img").src = currentImages[currentIndex];
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-  document.getElementById("lightbox-img").src = currentImages[currentIndex];
-}
-
-/* Swipe */
-let startX = 0;
-const lightbox = document.getElementById("lightbox");
-
-lightbox.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-lightbox.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) nextImage();
-  if (endX - startX > 50) prevImage();
-});
-
-lightbox.addEventListener("click", closeLightbox);
-
-/* INIT (MATCH FOLDER NAMES EXACTLY) */
 loadGallery("FUNDAY", fundayImages, "funday");
 loadGallery("PRAYERDAY", prayerdayImages, "prayerday");
