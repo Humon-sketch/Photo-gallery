@@ -39,8 +39,8 @@ header {
 .gallery {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important; /* 3 columns */
-  gap: 15px;
-  padding: 10px;
+  gap: 5px;
+  padding: 8px;
 }
 
 /* PHOTO BOX */
