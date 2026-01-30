@@ -1,4 +1,4 @@
-/* ================= IMAGE LISTS ================= */
+/* ===== IMAGE LISTS (EDIT ONLY THESE) ===== */
 
 const fundayImages = [
   "IMG-20251208-WA0142.jpg",
@@ -770,7 +770,7 @@ const prayerdayImages = [
   "IMG-20251210-WA0078.jpg",
 ];
 
-/* ============================================== */
+/* ======================================= */
 
 let currentImages = [];
 let currentIndex = 0;
@@ -784,33 +784,23 @@ function loadGallery(folder, images, containerId) {
     const img = document.createElement("img");
     img.src = `${folder}/${file}`;
     img.loading = "lazy";
-
-    img.addEventListener("click", () => {
-      openLightbox(folder, images, index);
-    });
-
+    img.onclick = () => openLightbox(folder, images, index);
     container.appendChild(img);
   });
 }
 
-/* Open fullscreen */
+/* Fullscreen */
 function openLightbox(folder, images, index) {
   currentImages = images.map(f => `${folder}/${f}`);
   currentIndex = index;
-
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-
-  img.src = currentImages[currentIndex];
-  lightbox.style.display = "flex";
+  document.getElementById("lightbox-img").src = currentImages[currentIndex];
+  document.getElementById("lightbox").style.display = "block";
 }
 
-/* Close fullscreen */
 function closeLightbox() {
   document.getElementById("lightbox").style.display = "none";
 }
 
-/* Next / Previous */
 function nextImage() {
   currentIndex = (currentIndex + 1) % currentImages.length;
   document.getElementById("lightbox-img").src = currentImages[currentIndex];
@@ -821,7 +811,7 @@ function prevImage() {
   document.getElementById("lightbox-img").src = currentImages[currentIndex];
 }
 
-/* Touch swipe */
+/* Swipe */
 let startX = 0;
 const lightbox = document.getElementById("lightbox");
 
@@ -835,9 +825,8 @@ lightbox.addEventListener("touchend", e => {
   if (endX - startX > 50) prevImage();
 });
 
-/* Click to close */
 lightbox.addEventListener("click", closeLightbox);
 
-/* INIT */
-loadGallery("funday", fundayImages, "funday");
-loadGallery("prayerday", prayerdayImages, "prayerday");
+/* INIT (MATCH FOLDER NAMES EXACTLY) */
+loadGallery("FUNDAY", fundayImages, "funday");
+loadGallery("PRAYERDAY", prayerdayImages, "prayerday");
